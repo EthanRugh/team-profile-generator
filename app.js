@@ -70,10 +70,10 @@ const addEmployee = () => {
     .then((newEmployeeData) => {
         console.log(newEmployeeData.newEmployee);
         if (newEmployeeData.newEmployee == 'Engineer') {
-            console.log('new engineer');
+            addEngineer();
         } 
         else if (newEmployeeData.newEmployee == 'Intern') {
-            console.log('new intern');
+            addIntern();
         } else {
             console.log('its working');
         }
@@ -83,9 +83,53 @@ const addEmployee = () => {
 const addEngineer = () => {
     return inquirer.prompt([
         {
-            
+            name: 'name',
+            type: 'input',
+            message: `Enter the new engineer's name`
+        },
+        {
+            name: 'id',
+            type: 'number',
+            message: `Enter engineer's id number`
+        },
+        {
+            name: 'email',
+            type: 'input',
+            message: `Enter engineer's email address`
+        },
+        {
+            name: 'github',
+            type: 'input',
+            message: `Enter the engineer's Github username`
         }
     ])
+    .then(addEmployee);
+};
+
+const addIntern = () => {
+    return inquirer.prompt([
+        {
+            name: 'name',
+            type: 'input',
+            message: `Enter the new intern's name`
+        },
+        {
+            name: 'id',
+            type: 'number',
+            message: `Enter the new intern's id number`
+        },
+        {
+            name: 'email',
+            type: 'input',
+            message: `Enter the new intern's email`
+        },
+        {
+            name: 'school',
+            type: 'input',
+            message: `Enter the school attended by the new intern`
+        }
+    ])
+    .then(addEmployee);
 }
 
 promptUser();
